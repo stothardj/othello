@@ -18,7 +18,7 @@ func init(p):
 
 func set_color(color):
 	if color in ["empty", "white", "black"]:
-		s.set_animation(color)
+		s.play(color)
 
 func _on_Square_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:

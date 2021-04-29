@@ -11,8 +11,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 30.0
 margin_top = 30.0
-margin_right = 30.0
-margin_bottom = 30.0
+margin_right = 370.0
+margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -21,13 +21,13 @@ __meta__ = {
 }
 
 [node name="TopBarContainer" type="HBoxContainer" parent="GUI"]
-margin_right = 193.0
+margin_right = 340.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="TurnContainer" type="HBoxContainer" parent="GUI/TopBarContainer"]
-margin_right = 126.0
+margin_right = 273.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -50,16 +50,16 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "black"
 
 [node name="Skip" type="Button" parent="GUI/TopBarContainer"]
-margin_left = 130.0
-margin_right = 189.0
+margin_left = 277.0
+margin_right = 336.0
 margin_bottom = 34.0
 custom_fonts/font = ExtResource( 3 )
 text = "Skip"
 
 [node name="Winner" type="Label" parent="GUI/TopBarContainer"]
-margin_left = 193.0
+margin_left = 340.0
 margin_top = 10.0
-margin_right = 193.0
+margin_right = 340.0
 margin_bottom = 24.0
 
 [node name="Board" type="Node2D" parent="."]
