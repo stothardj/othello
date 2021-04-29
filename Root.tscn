@@ -4,15 +4,11 @@
 [ext_resource path="res://Board.gd" type="Script" id=2]
 [ext_resource path="res://GameFont.res" type="DynamicFont" id=3]
 
-[node name="Root" type="Node2D"]
+[node name="Root" type="Node"]
 
 [node name="GUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 30.0
-margin_top = 30.0
-margin_right = 370.0
-margin_bottom = 64.0
+margin_bottom = 34.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -21,50 +17,88 @@ __meta__ = {
 }
 
 [node name="TopBarContainer" type="HBoxContainer" parent="GUI"]
-margin_right = 340.0
-margin_bottom = 34.0
+margin_right = 400.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TurnContainer" type="HBoxContainer" parent="GUI/TopBarContainer"]
-margin_right = 273.0
-margin_bottom = 34.0
+[node name="ScoreVertical" type="VBoxContainer" parent="GUI/TopBarContainer"]
+margin_right = 270.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="TurnLabel" type="Label" parent="GUI/TopBarContainer/TurnContainer"]
-margin_top = 3.0
+[node name="BlackScoreContainer" type="HBoxContainer" parent="GUI/TopBarContainer/ScoreVertical"]
+margin_right = 270.0
+margin_bottom = 28.0
+
+[node name="BlackScoreLabel" type="Label" parent="GUI/TopBarContainer/ScoreVertical/BlackScoreContainer"]
+margin_right = 66.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Black:"
+
+[node name="BlackScoreText" type="Label" parent="GUI/TopBarContainer/ScoreVertical/BlackScoreContainer"]
+margin_left = 70.0
+margin_right = 84.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "2"
+
+[node name="WhiteScoreContainer" type="HBoxContainer" parent="GUI/TopBarContainer/ScoreVertical"]
+margin_top = 32.0
+margin_right = 270.0
+margin_bottom = 60.0
+
+[node name="WhiteScoreLabel" type="Label" parent="GUI/TopBarContainer/ScoreVertical/WhiteScoreContainer"]
+margin_right = 74.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "White:"
+
+[node name="WhiteScoreText" type="Label" parent="GUI/TopBarContainer/ScoreVertical/WhiteScoreContainer"]
+margin_left = 78.0
+margin_right = 92.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "2"
+
+[node name="TurnVertical" type="VBoxContainer" parent="GUI/TopBarContainer"]
+margin_left = 274.0
+margin_right = 400.0
+margin_bottom = 66.0
+
+[node name="TurnContainer" type="HBoxContainer" parent="GUI/TopBarContainer/TurnVertical"]
+margin_right = 126.0
+margin_bottom = 28.0
+
+[node name="TurnLabel" type="Label" parent="GUI/TopBarContainer/TurnVertical/TurnContainer"]
 margin_right = 64.0
-margin_bottom = 31.0
+margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Turn:"
 
-[node name="TurnText" type="Label" parent="GUI/TopBarContainer/TurnContainer"]
+[node name="TurnText" type="Label" parent="GUI/TopBarContainer/TurnVertical/TurnContainer"]
 margin_left = 68.0
-margin_top = 3.0
 margin_right = 126.0
-margin_bottom = 31.0
+margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "black"
 
-[node name="Skip" type="Button" parent="GUI/TopBarContainer"]
-margin_left = 277.0
-margin_right = 336.0
-margin_bottom = 34.0
+[node name="Skip" type="Button" parent="GUI/TopBarContainer/TurnVertical"]
+margin_top = 32.0
+margin_right = 126.0
+margin_bottom = 66.0
 custom_fonts/font = ExtResource( 3 )
 text = "Skip"
-
-[node name="Winner" type="Label" parent="GUI/TopBarContainer"]
-margin_left = 340.0
-margin_top = 10.0
-margin_right = 340.0
-margin_bottom = 24.0
 
 [node name="Board" type="Node2D" parent="."]
 position = Vector2( 32, 80 )
 script = ExtResource( 2 )
-[connection signal="pressed" from="GUI/TopBarContainer/Skip" to="Board" method="_on_Skip_pressed"]
+[connection signal="pressed" from="GUI/TopBarContainer/TurnVertical/Skip" to="Board" method="_on_Skip_pressed"]
 [connection signal="game_over" from="Board" to="GUI" method="_on_Board_game_over"]
+[connection signal="pieces_taken" from="Board" to="GUI" method="_on_Board_pieces_taken"]
 [connection signal="turn_changed" from="Board" to="GUI" method="_on_Board_turn_changed"]

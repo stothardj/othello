@@ -24,6 +24,6 @@ func _on_Square_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:
 		emit_signal("square_picked", board_pos)
 		
-func _on_Pieces_taken(taken_by, positions):
+func _on_Pieces_taken(taken_by, positions, scores):
 	if board_pos in positions:
 		self.set_color(taken_by)

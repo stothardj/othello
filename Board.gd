@@ -67,9 +67,10 @@ func _on_Square_picked(pos):
 		ps.append(pos)
 		for p in ps:
 			board[p] = turn
-		emit_signal("pieces_taken", turn, ps)
+		var scores = get_scores()
+		emit_signal("pieces_taken", turn, ps, scores)
 		if not can_go(turn) and not can_go(next_turn()):
-			emit_signal("game_over", get_scores())
+			emit_signal("game_over", scores)
 		else:
 			turn = next_turn()
 			emit_signal("turn_changed", turn)

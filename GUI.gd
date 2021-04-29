@@ -4,9 +4,10 @@ extends MarginContainer
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var turn_label = $TopBarContainer/TurnContainer/TurnLabel
-onready var turn_text = $TopBarContainer/TurnContainer/TurnText
-onready var winner_label = $TopBarContainer/Winner
+onready var turn_label = $TopBarContainer/TurnVertical/TurnContainer/TurnLabel
+onready var turn_text = $TopBarContainer/TurnVertical/TurnContainer/TurnText
+onready var black_score_text = $TopBarContainer/ScoreVertical/BlackScoreContainer/BlackScoreText
+onready var white_score_text = $TopBarContainer/ScoreVertical/WhiteScoreContainer/WhiteScoreText
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,4 +27,9 @@ func _on_Board_turn_changed(turn):
 
 
 func _on_Board_game_over(scores):
-	winner_label.text = "Winner: {winner}  White: {white_count}  Black: {black_count}".format(scores)
+	print("Winner: {winner}  White: {white_count}  Black: {black_count}".format(scores))
+
+
+func _on_Board_pieces_taken(taken_by, positions, scores):
+	black_score_text.text = str(scores['black_count'])
+	white_score_text.text = str(scores['white_count'])
