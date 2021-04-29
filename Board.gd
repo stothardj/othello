@@ -96,9 +96,10 @@ func _ready():
 	for p in all_positions:
 		var sq = square.instance()
 		sq.init(p)
-		sq.position = Vector2(p[1] * 32 + 16, p[0] * 32 + 16)
+		sq.position = Vector2(p[1] * 40, p[0] * 40)
 		add_child(sq)
 		children[p] = sq
+		sq.set_size(40)
 		sq.connect("square_picked", self, "_on_Square_picked")
 		self.connect("pieces_taken", sq, "_on_Pieces_taken")
 	

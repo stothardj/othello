@@ -2,7 +2,7 @@ extends Area2D
 
 signal square_picked
 
-onready var s = get_node("Sprite")
+onready var s = $Sprite
 var board_pos
 
 # Called when the node enters the scene tree for the first time.
@@ -19,6 +19,11 @@ func init(p):
 func set_color(color):
 	if color in ["empty", "white", "black"]:
 		s.play(color)
+
+func set_size(size):
+	var image_size = $Sprite.frames.get_frame("empty", 0).get_size()
+	var scale = Vector2(size / image_size.x, size / image_size.y)
+	$Sprite.scale = scale
 
 func _on_Square_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:

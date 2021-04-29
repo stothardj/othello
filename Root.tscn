@@ -96,7 +96,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "Skip"
 
 [node name="Board" type="Node2D" parent="."]
-position = Vector2( 32, 80 )
+position = Vector2( 56, 93 )
 script = ExtResource( 2 )
 [connection signal="pressed" from="GUI/TopBarContainer/TurnVertical/Skip" to="Board" method="_on_Skip_pressed"]
 [connection signal="game_over" from="Board" to="GUI" method="_on_Board_game_over"]
