@@ -8,7 +8,12 @@
 
 [node name="GUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
-margin_bottom = 34.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -16,29 +21,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TopBarContainer" type="HBoxContainer" parent="GUI"]
-margin_right = 400.0
+[node name="GameDivider" type="VBoxContainer" parent="GUI"]
+margin_right = 984.0
+margin_bottom = 760.0
+mouse_filter = 2
+
+[node name="TopBarContainer" type="HBoxContainer" parent="GUI/GameDivider"]
+margin_right = 984.0
 margin_bottom = 66.0
+mouse_filter = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="ScoreVertical" type="VBoxContainer" parent="GUI/TopBarContainer"]
-margin_right = 270.0
+[node name="ScoreVertical" type="VBoxContainer" parent="GUI/GameDivider/TopBarContainer"]
+margin_right = 854.0
 margin_bottom = 66.0
 size_flags_horizontal = 3
 
-[node name="BlackScoreContainer" type="HBoxContainer" parent="GUI/TopBarContainer/ScoreVertical"]
-margin_right = 270.0
+[node name="BlackScoreContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/ScoreVertical"]
+margin_right = 854.0
 margin_bottom = 28.0
 
-[node name="BlackScoreLabel" type="Label" parent="GUI/TopBarContainer/ScoreVertical/BlackScoreContainer"]
+[node name="BlackScoreLabel" type="Label" parent="GUI/GameDivider/TopBarContainer/ScoreVertical/BlackScoreContainer"]
 margin_right = 66.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Black:"
 
-[node name="BlackScoreText" type="Label" parent="GUI/TopBarContainer/ScoreVertical/BlackScoreContainer"]
+[node name="BlackScoreText" type="Label" parent="GUI/GameDivider/TopBarContainer/ScoreVertical/BlackScoreContainer"]
 margin_left = 70.0
 margin_right = 84.0
 margin_bottom = 28.0
@@ -46,41 +57,41 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "2"
 
-[node name="WhiteScoreContainer" type="HBoxContainer" parent="GUI/TopBarContainer/ScoreVertical"]
+[node name="WhiteScoreContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/ScoreVertical"]
 margin_top = 32.0
-margin_right = 270.0
+margin_right = 854.0
 margin_bottom = 60.0
 
-[node name="WhiteScoreLabel" type="Label" parent="GUI/TopBarContainer/ScoreVertical/WhiteScoreContainer"]
+[node name="WhiteScoreLabel" type="Label" parent="GUI/GameDivider/TopBarContainer/ScoreVertical/WhiteScoreContainer"]
 margin_right = 74.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
 text = "White:"
 
-[node name="WhiteScoreText" type="Label" parent="GUI/TopBarContainer/ScoreVertical/WhiteScoreContainer"]
+[node name="WhiteScoreText" type="Label" parent="GUI/GameDivider/TopBarContainer/ScoreVertical/WhiteScoreContainer"]
 margin_left = 78.0
 margin_right = 92.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
 text = "2"
 
-[node name="TurnVertical" type="VBoxContainer" parent="GUI/TopBarContainer"]
-margin_left = 274.0
-margin_right = 400.0
+[node name="TurnVertical" type="VBoxContainer" parent="GUI/GameDivider/TopBarContainer"]
+margin_left = 858.0
+margin_right = 984.0
 margin_bottom = 66.0
 
-[node name="TurnContainer" type="HBoxContainer" parent="GUI/TopBarContainer/TurnVertical"]
+[node name="TurnContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/TurnVertical"]
 margin_right = 126.0
 margin_bottom = 28.0
 
-[node name="TurnLabel" type="Label" parent="GUI/TopBarContainer/TurnVertical/TurnContainer"]
+[node name="TurnLabel" type="Label" parent="GUI/GameDivider/TopBarContainer/TurnVertical/TurnContainer"]
 margin_right = 64.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = " Turn:"
 
-[node name="TurnText" type="Label" parent="GUI/TopBarContainer/TurnVertical/TurnContainer"]
+[node name="TurnText" type="Label" parent="GUI/GameDivider/TopBarContainer/TurnVertical/TurnContainer"]
 margin_left = 68.0
 margin_right = 126.0
 margin_bottom = 28.0
@@ -88,17 +99,22 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "black"
 
-[node name="Skip" type="Button" parent="GUI/TopBarContainer/TurnVertical"]
+[node name="Skip" type="Button" parent="GUI/GameDivider/TopBarContainer/TurnVertical"]
 margin_top = 32.0
 margin_right = 126.0
 margin_bottom = 66.0
 custom_fonts/font = ExtResource( 3 )
 text = "Skip"
 
-[node name="Board" type="Node2D" parent="."]
-position = Vector2( 56, 93 )
+[node name="Board" type="MarginContainer" parent="GUI/GameDivider"]
+margin_top = 70.0
+margin_right = 984.0
+margin_bottom = 760.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 2 )
-[connection signal="pressed" from="GUI/TopBarContainer/TurnVertical/Skip" to="Board" method="_on_Skip_pressed"]
-[connection signal="game_over" from="Board" to="GUI" method="_on_Board_game_over"]
-[connection signal="pieces_taken" from="Board" to="GUI" method="_on_Board_pieces_taken"]
-[connection signal="turn_changed" from="Board" to="GUI" method="_on_Board_turn_changed"]
+[connection signal="pressed" from="GUI/GameDivider/TopBarContainer/TurnVertical/Skip" to="GUI/GameDivider/Board" method="_on_Skip_pressed"]
+[connection signal="game_over" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_game_over"]
+[connection signal="pieces_taken" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_pieces_taken"]
+[connection signal="turn_changed" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_turn_changed"]

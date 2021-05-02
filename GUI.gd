@@ -1,22 +1,11 @@
 extends MarginContainer
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-onready var turn_label = $TopBarContainer/TurnVertical/TurnContainer/TurnLabel
-onready var turn_text = $TopBarContainer/TurnVertical/TurnContainer/TurnText
-onready var black_score_text = $TopBarContainer/ScoreVertical/BlackScoreContainer/BlackScoreText
-onready var white_score_text = $TopBarContainer/ScoreVertical/WhiteScoreContainer/WhiteScoreText
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+# TODO, move this logic to TopBarContainer or something
+onready var turn_label = $GameDivider/TopBarContainer/TurnVertical/TurnContainer/TurnLabel
+onready var turn_text = $GameDivider/TopBarContainer/TurnVertical/TurnContainer/TurnText
+onready var black_score_text = $GameDivider/TopBarContainer/ScoreVertical/BlackScoreContainer/BlackScoreText
+onready var white_score_text = $GameDivider/TopBarContainer/ScoreVertical/WhiteScoreContainer/WhiteScoreText
 
 
 func _on_Board_turn_changed(turn):
