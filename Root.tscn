@@ -28,14 +28,14 @@ mouse_filter = 2
 
 [node name="TopBarContainer" type="HBoxContainer" parent="GUI/GameDivider"]
 margin_right = 984.0
-margin_bottom = 66.0
+margin_bottom = 60.0
 mouse_filter = 2
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="ScoreVertical" type="VBoxContainer" parent="GUI/GameDivider/TopBarContainer"]
 margin_right = 854.0
-margin_bottom = 66.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 
 [node name="BlackScoreContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/ScoreVertical"]
@@ -78,7 +78,7 @@ text = "2"
 [node name="TurnVertical" type="VBoxContainer" parent="GUI/GameDivider/TopBarContainer"]
 margin_left = 858.0
 margin_right = 984.0
-margin_bottom = 66.0
+margin_bottom = 60.0
 
 [node name="TurnContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/TurnVertical"]
 margin_right = 126.0
@@ -100,6 +100,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "black"
 
 [node name="Skip" type="Button" parent="GUI/GameDivider/TopBarContainer/TurnVertical"]
+visible = false
 margin_top = 32.0
 margin_right = 126.0
 margin_bottom = 66.0
@@ -107,7 +108,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "Skip"
 
 [node name="Board" type="MarginContainer" parent="GUI/GameDivider"]
-margin_top = 70.0
+margin_top = 64.0
 margin_right = 984.0
 margin_bottom = 760.0
 mouse_filter = 2

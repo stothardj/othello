@@ -69,11 +69,12 @@ func _on_Square_picked(pos):
 			board[p] = turn
 		var scores = get_scores()
 		emit_signal("pieces_taken", turn, ps, scores)
-		if not can_go(turn) and not can_go(next_turn()):
+		var next_can_go = can_go(next_turn())
+		if not can_go(turn) and not next_can_go:
 			emit_signal("game_over", scores)
 		else:
 			turn = next_turn()
-			emit_signal("turn_changed", turn)
+			emit_signal("turn_changed", turn, !next_can_go)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -123,4 +124,4 @@ func can_go(turn):
 func _on_Skip_pressed():
 	if not can_go(turn):
 		turn = next_turn()
-		emit_signal("turn_changed", turn)
+		emit_signal("turn_changed", turn, false)
