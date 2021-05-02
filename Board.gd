@@ -98,12 +98,13 @@ func _ready():
 	var board_size = min(board_width, board_height)
 	var piece_size = board_size / 8
 	var piece_offset = piece_size / 2
+	var board_shift = Vector2(
+		(board_width - board_size) / 2 + piece_offset,
+		(board_height - board_size) / 2 + piece_offset)
 	for p in all_positions:
 		var sq = square.instance()
 		sq.init(p)
-		sq.position = Vector2(
-			p[1] * piece_size + piece_offset,
-			p[0] * piece_size + piece_offset)
+		sq.position = Vector2(p[1],p[0]) * piece_size + board_shift
 		add_child(sq)
 		children[p] = sq
 		sq.set_size(piece_size)
