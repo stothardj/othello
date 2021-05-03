@@ -15,10 +15,6 @@ func _on_Board_turn_changed(turn, skippable):
 	turn_text.add_color_override("font_color", color)
 	skip_button.visible = skippable
 
-func _on_Board_game_over(scores):
-	print("Winner: {winner}  White: {white_count}  Black: {black_count}".format(scores))
-
-
-func _on_Board_pieces_taken(taken_by, positions, scores):
+func _on_Board_pieces_taken(_taken_by, _positions, scores):
 	black_score_text.text = str(scores['black_count'])
 	white_score_text.text = str(scores['white_count'])

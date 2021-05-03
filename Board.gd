@@ -11,7 +11,7 @@ var children = {}
 var all_positions = []
 var neighbor_directions = []
 
-func positions_taken(turn, pos):
+func positions_taken(on_turn, pos):
 	var positions = []
 	if pos in board:
 		return positions
@@ -21,14 +21,14 @@ func positions_taken(turn, pos):
 		if not p in board:
 			continue
 		var neighbor_color = board[p]
-		if neighbor_color == turn:
+		if neighbor_color == on_turn:
 			continue
 		var search_pos = p
 		var search_color = neighbor_color
 		while search_color == neighbor_color:
 			search_pos += neighbor_direction
 			search_color = board.get(search_pos, "empty")
-		if search_color == turn:
+		if search_color == on_turn:
 			while p != search_pos:
 				positions.append(p)
 				p += neighbor_direction
@@ -115,9 +115,9 @@ func _ready():
 	for pos in board.keys():
 		children[pos].set_color(board[pos])
 
-func can_go(turn):
+func can_go(on_turn):
 	for p in all_positions:
-		if not positions_taken(turn, p).empty():
+		if not positions_taken(on_turn, p).empty():
 			return true
 	return false
 

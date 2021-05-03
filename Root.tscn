@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GUI.gd" type="Script" id=1]
 [ext_resource path="res://Board.gd" type="Script" id=2]
 [ext_resource path="res://GameFont.res" type="DynamicFont" id=3]
+[ext_resource path="res://WinContainer.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.482353, 0.364706, 0.184314, 1 )
 
 [node name="Root" type="Node"]
 
@@ -115,7 +119,56 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )
+
+[node name="WinContainer" type="CenterContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="WinContainer"]
+margin_left = 362.0
+margin_top = 300.0
+margin_right = 662.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 300, 200 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBox" type="VBoxContainer" parent="WinContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinnerAnnounce" type="Label" parent="WinContainer/Panel/VBox"]
+margin_top = 58.0
+margin_right = 300.0
+margin_bottom = 86.0
+custom_fonts/font = ExtResource( 3 )
+text = "Winner: White"
+align = 1
+
+[node name="FinalScore" type="Label" parent="WinContainer/Panel/VBox"]
+margin_top = 90.0
+margin_right = 300.0
+margin_bottom = 118.0
+custom_fonts/font = ExtResource( 3 )
+text = "32-30"
+align = 1
+
+[node name="Button" type="Button" parent="WinContainer/Panel/VBox"]
+margin_top = 122.0
+margin_right = 300.0
+margin_bottom = 142.0
+text = "New Game"
 [connection signal="pressed" from="GUI/GameDivider/TopBarContainer/TurnVertical/Skip" to="GUI/GameDivider/Board" method="_on_Skip_pressed"]
-[connection signal="game_over" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_game_over"]
+[connection signal="game_over" from="GUI/GameDivider/Board" to="WinContainer" method="_on_Board_game_over"]
 [connection signal="pieces_taken" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_pieces_taken"]
 [connection signal="turn_changed" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_turn_changed"]
