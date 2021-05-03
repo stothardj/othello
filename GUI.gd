@@ -1,7 +1,5 @@
 extends MarginContainer
 
-
-# TODO, move this logic to TopBarContainer or something
 onready var turn_label = $GameDivider/TopBarContainer/TurnVertical/TurnContainer/TurnLabel
 onready var turn_text = $GameDivider/TopBarContainer/TurnVertical/TurnContainer/TurnText
 onready var black_score_text = $GameDivider/TopBarContainer/ScoreVertical/BlackScoreContainer/BlackScoreText
@@ -18,3 +16,7 @@ func _on_Board_turn_changed(turn, skippable):
 func _on_Board_pieces_taken(_taken_by, _positions, scores):
 	black_score_text.text = str(scores['black_count'])
 	white_score_text.text = str(scores['white_count'])
+
+func _on_WinContainer_new_game():
+	black_score_text.text = "2"
+	white_score_text.text = "2"

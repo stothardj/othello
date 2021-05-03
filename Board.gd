@@ -77,14 +77,7 @@ func _on_Square_picked(pos):
 			emit_signal("turn_changed", turn, !next_can_go)
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	board = {
-		Vector2(3,3): "white",
-		Vector2(4,4): "white",
-		Vector2(3,4): "black",
-		Vector2(4,3): "black"
-	}
-	
+func _ready():	
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			if i or j:
@@ -111,9 +104,9 @@ func _ready():
 		sq.set_size(piece_size)
 		sq.connect("square_picked", self, "_on_Square_picked")
 		self.connect("pieces_taken", sq, "_on_Pieces_taken")
-	
-	for pos in board.keys():
-		children[pos].set_color(board[pos])
+
+	start_board()	
+
 
 func can_go(on_turn):
 	for p in all_positions:
@@ -125,3 +118,21 @@ func _on_Skip_pressed():
 	if not can_go(turn):
 		turn = next_turn()
 		emit_signal("turn_changed", turn, false)
+
+func clear_board():
+	for pos in all_positions:
+		children[pos].set_color("empty")
+		
+func start_board():
+	board = {
+		Vector2(3,3): "white",
+		Vector2(4,4): "white",
+		Vector2(3,4): "black",
+		Vector2(4,3): "black"
+	}
+	for pos in board.keys():
+		children[pos].set_color(board[pos])
+
+func _on_WinContainer_new_game():
+	clear_board()
+	start_board()
