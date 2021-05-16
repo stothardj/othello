@@ -10,6 +10,7 @@ var board = {}
 var children = {}
 var all_positions = []
 var neighbor_directions = []
+var history = []
 
 func positions_taken(on_turn, pos):
 	var positions = []
@@ -61,9 +62,16 @@ func get_scores():
 		"winner": winner
 	}
 
+func append_history():
+	history.append({
+		"turn": turn,
+		"board": board.duplicate(true),
+	})
+
 func _on_Square_picked(pos):
 	var ps = positions_taken(turn, pos)
 	if not ps.empty():
+		append_history()
 		ps.append(pos)
 		for p in ps:
 			board[p] = turn
@@ -103,15 +111,14 @@ func _ready():
 	
 	for p in all_positions:
 		var sq = square.instance()
-		add_child(sq)
 		sq.init(p)
+		add_child(sq)
 		children[p] = sq
 		sq.connect("square_picked", self, "_on_Square_picked")
 		self.connect("pieces_taken", sq, "_on_Pieces_taken")
 
 	resize_squares()
-	start_board()	
-
+	start_board()
 
 func can_go(on_turn):
 	for p in all_positions:
@@ -127,7 +134,11 @@ func _on_Skip_pressed():
 func clear_board():
 	for pos in all_positions:
 		children[pos].set_color("empty")
-		
+
+func reset_colors():
+	for pos in all_positions:
+		children[pos].set_color(board.get(pos, "empty"))
+	
 func start_board():
 	board = {
 		Vector2(3,3): "white",
@@ -135,12 +146,20 @@ func start_board():
 		Vector2(3,4): "black",
 		Vector2(4,3): "black"
 	}
-	for pos in board.keys():
-		children[pos].set_color(board[pos])
+	reset_colors()
 
 func _on_WinContainer_new_game():
+	history = []
 	clear_board()
 	start_board()
 
 func _on_Board_resized():
 	resize_squares()
+
+func _on_UndoButton_pressed():
+	if history.empty():
+		return
+	var state = history.pop_back()
+	turn = state["turn"]
+	board = state["board"]
+	reset_colors()

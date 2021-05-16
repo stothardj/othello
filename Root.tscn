@@ -38,12 +38,12 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="ScoreVertical" type="VBoxContainer" parent="GUI/GameDivider/TopBarContainer"]
-margin_right = 390.0
+margin_right = 92.0
 margin_bottom = 60.0
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 
 [node name="BlackScoreContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/ScoreVertical"]
-margin_right = 390.0
+margin_right = 92.0
 margin_bottom = 28.0
 
 [node name="BlackScoreLabel" type="Label" parent="GUI/GameDivider/TopBarContainer/ScoreVertical/BlackScoreContainer"]
@@ -63,7 +63,7 @@ text = "2"
 
 [node name="WhiteScoreContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/ScoreVertical"]
 margin_top = 32.0
-margin_right = 390.0
+margin_right = 92.0
 margin_bottom = 60.0
 
 [node name="WhiteScoreLabel" type="Label" parent="GUI/GameDivider/TopBarContainer/ScoreVertical/WhiteScoreContainer"]
@@ -79,10 +79,19 @@ margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
 text = "2"
 
+[node name="UndoButton" type="Button" parent="GUI/GameDivider/TopBarContainer"]
+margin_left = 223.0
+margin_right = 294.0
+margin_bottom = 60.0
+size_flags_horizontal = 6
+custom_fonts/font = ExtResource( 3 )
+text = "Undo"
+
 [node name="TurnVertical" type="VBoxContainer" parent="GUI/GameDivider/TopBarContainer"]
 margin_left = 394.0
 margin_right = 520.0
 margin_bottom = 60.0
+size_flags_horizontal = 10
 
 [node name="TurnContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/TurnVertical"]
 margin_right = 126.0
@@ -173,6 +182,7 @@ margin_right = 300.0
 margin_bottom = 34.0
 custom_fonts/font = ExtResource( 3 )
 text = "New Game"
+[connection signal="pressed" from="GUI/GameDivider/TopBarContainer/UndoButton" to="GUI/GameDivider/Board" method="_on_UndoButton_pressed"]
 [connection signal="pressed" from="GUI/GameDivider/TopBarContainer/TurnVertical/Skip" to="GUI/GameDivider/Board" method="_on_Skip_pressed"]
 [connection signal="game_over" from="GUI/GameDivider/Board" to="WinContainer" method="_on_Board_game_over"]
 [connection signal="pieces_taken" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_pieces_taken"]

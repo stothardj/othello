@@ -7,7 +7,6 @@ var board_pos
 
 func init(p):
 	board_pos = p
-	set_color("empty")
 
 func set_color(color):
 	if color in ["empty", "white", "black"]:
