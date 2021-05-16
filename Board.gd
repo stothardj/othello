@@ -103,8 +103,8 @@ func _ready():
 	
 	for p in all_positions:
 		var sq = square.instance()
-		sq.init(p)
 		add_child(sq)
+		sq.init(p)
 		children[p] = sq
 		sq.connect("square_picked", self, "_on_Square_picked")
 		self.connect("pieces_taken", sq, "_on_Pieces_taken")

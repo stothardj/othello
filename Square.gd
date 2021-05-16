@@ -7,6 +7,7 @@ var board_pos
 
 func init(p):
 	board_pos = p
+	set_color("empty")
 
 func set_color(color):
 	if color in ["empty", "white", "black"]:
@@ -21,7 +22,12 @@ func _on_Square_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:
 		emit_signal("square_picked", board_pos)
 	elif event is InputEventScreenTouch:
-		emit_signal("square_picked", board_pos)
+		if event.pressed and s.animation == "empty":
+			s.play("highlighted")
+		else:
+			emit_signal("square_picked", board_pos)
+			if s.animation == "highlighted":
+				s.play("empty")
 
 func _on_Pieces_taken(taken_by, positions, _scores):
 	if board_pos in positions:
