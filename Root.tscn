@@ -80,6 +80,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "2"
 
 [node name="UndoButton" type="Button" parent="GUI/GameDivider/TopBarContainer"]
+visible = false
 margin_left = 223.0
 margin_right = 294.0
 margin_bottom = 60.0
@@ -188,6 +189,7 @@ text = "New Game"
 [connection signal="pieces_taken" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_pieces_taken"]
 [connection signal="resized" from="GUI/GameDivider/Board" to="GUI/GameDivider/Board" method="_on_Board_resized"]
 [connection signal="turn_changed" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_turn_changed"]
+[connection signal="undo" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_undo"]
 [connection signal="new_game" from="WinContainer" to="GUI" method="_on_WinContainer_new_game"]
 [connection signal="new_game" from="WinContainer" to="GUI/GameDivider/Board" method="_on_WinContainer_new_game"]
 [connection signal="pressed" from="WinContainer/Panel/VBox/NewGameContainer/NewGame" to="WinContainer" method="_on_NewGame_pressed"]

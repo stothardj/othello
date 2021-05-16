@@ -3,6 +3,7 @@ extends MarginContainer
 signal pieces_taken
 signal turn_changed
 signal game_over
+signal undo
 
 var square = preload("res://Square.tscn")
 var turn = "black"
@@ -163,3 +164,4 @@ func _on_UndoButton_pressed():
 	turn = state["turn"]
 	board = state["board"]
 	reset_colors()
+	emit_signal("undo", !history.empty(), get_scores())
