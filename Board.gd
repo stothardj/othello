@@ -76,6 +76,20 @@ func _on_Square_picked(pos):
 			turn = next_turn()
 			emit_signal("turn_changed", turn, !next_can_go)
 
+func resize_squares():
+	var board_width = self.rect_size.x
+	var board_height = self.rect_size.y
+	var board_size = min(board_width, board_height)
+	var piece_size = board_size / 8
+	var piece_offset = piece_size / 2
+	var board_shift = Vector2(
+		(board_width - board_size) / 2 + piece_offset,
+		(board_height - board_size) / 2 + piece_offset)
+	for p in all_positions:
+		var sq = children[p]
+		sq.position = Vector2(p[1],p[0]) * piece_size + board_shift
+		sq.set_size(piece_size)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():	
 	for i in range(-1, 2):
@@ -87,24 +101,15 @@ func _ready():
 		for c in range(0,8):
 			all_positions.append(Vector2(r, c))
 	
-	var board_width = self.rect_size.x
-	var board_height = self.rect_size.y
-	var board_size = min(board_width, board_height)
-	var piece_size = board_size / 8
-	var piece_offset = piece_size / 2
-	var board_shift = Vector2(
-		(board_width - board_size) / 2 + piece_offset,
-		(board_height - board_size) / 2 + piece_offset)
 	for p in all_positions:
 		var sq = square.instance()
 		sq.init(p)
-		sq.position = Vector2(p[1],p[0]) * piece_size + board_shift
 		add_child(sq)
 		children[p] = sq
-		sq.set_size(piece_size)
 		sq.connect("square_picked", self, "_on_Square_picked")
 		self.connect("pieces_taken", sq, "_on_Pieces_taken")
 
+	resize_squares()
 	start_board()	
 
 
@@ -136,3 +141,6 @@ func start_board():
 func _on_WinContainer_new_game():
 	clear_board()
 	start_board()
+
+func _on_Board_resized():
+	resize_squares()

@@ -13,10 +13,10 @@ bg_color = Color( 0.482353, 0.364706, 0.184314, 1 )
 [node name="GUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -26,24 +26,24 @@ __meta__ = {
 }
 
 [node name="GameDivider" type="VBoxContainer" parent="GUI"]
-margin_right = 984.0
-margin_bottom = 760.0
+margin_right = 520.0
+margin_bottom = 520.0
 mouse_filter = 2
 
 [node name="TopBarContainer" type="HBoxContainer" parent="GUI/GameDivider"]
-margin_right = 984.0
+margin_right = 520.0
 margin_bottom = 60.0
 mouse_filter = 2
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="ScoreVertical" type="VBoxContainer" parent="GUI/GameDivider/TopBarContainer"]
-margin_right = 854.0
+margin_right = 390.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
 
 [node name="BlackScoreContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/ScoreVertical"]
-margin_right = 854.0
+margin_right = 390.0
 margin_bottom = 28.0
 
 [node name="BlackScoreLabel" type="Label" parent="GUI/GameDivider/TopBarContainer/ScoreVertical/BlackScoreContainer"]
@@ -63,7 +63,7 @@ text = "2"
 
 [node name="WhiteScoreContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/ScoreVertical"]
 margin_top = 32.0
-margin_right = 854.0
+margin_right = 390.0
 margin_bottom = 60.0
 
 [node name="WhiteScoreLabel" type="Label" parent="GUI/GameDivider/TopBarContainer/ScoreVertical/WhiteScoreContainer"]
@@ -80,8 +80,8 @@ custom_fonts/font = ExtResource( 3 )
 text = "2"
 
 [node name="TurnVertical" type="VBoxContainer" parent="GUI/GameDivider/TopBarContainer"]
-margin_left = 858.0
-margin_right = 984.0
+margin_left = 394.0
+margin_right = 520.0
 margin_bottom = 60.0
 
 [node name="TurnContainer" type="HBoxContainer" parent="GUI/GameDivider/TopBarContainer/TurnVertical"]
@@ -113,8 +113,8 @@ text = "Skip"
 
 [node name="Board" type="MarginContainer" parent="GUI/GameDivider"]
 margin_top = 64.0
-margin_right = 984.0
-margin_bottom = 760.0
+margin_right = 520.0
+margin_bottom = 520.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -130,10 +130,10 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="WinContainer"]
-margin_left = 362.0
-margin_top = 300.0
-margin_right = 662.0
-margin_bottom = 500.0
+margin_left = 150.0
+margin_top = 200.0
+margin_right = 450.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 300, 200 )
 custom_styles/panel = SubResource( 1 )
 
@@ -164,19 +164,19 @@ text = "32-30"
 align = 1
 
 [node name="NewGameContainer" type="MarginContainer" parent="WinContainer/Panel/VBox"]
-margin_left = 20.0
-margin_top = 130.0
-margin_right = 280.0
+margin_top = 115.0
+margin_right = 300.0
 margin_bottom = 149.0
 
 [node name="NewGame" type="Button" parent="WinContainer/Panel/VBox/NewGameContainer"]
-margin_right = 260.0
+margin_right = 300.0
 margin_bottom = 34.0
 custom_fonts/font = ExtResource( 3 )
 text = "New Game"
 [connection signal="pressed" from="GUI/GameDivider/TopBarContainer/TurnVertical/Skip" to="GUI/GameDivider/Board" method="_on_Skip_pressed"]
 [connection signal="game_over" from="GUI/GameDivider/Board" to="WinContainer" method="_on_Board_game_over"]
 [connection signal="pieces_taken" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_pieces_taken"]
+[connection signal="resized" from="GUI/GameDivider/Board" to="GUI/GameDivider/Board" method="_on_Board_resized"]
 [connection signal="turn_changed" from="GUI/GameDivider/Board" to="GUI" method="_on_Board_turn_changed"]
 [connection signal="new_game" from="WinContainer" to="GUI" method="_on_WinContainer_new_game"]
 [connection signal="new_game" from="WinContainer" to="GUI/GameDivider/Board" method="_on_WinContainer_new_game"]
